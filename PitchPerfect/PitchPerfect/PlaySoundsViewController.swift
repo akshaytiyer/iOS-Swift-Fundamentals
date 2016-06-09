@@ -28,11 +28,24 @@ class PlaySoundsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        aspectFitButtons()
         setupAudio()
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         configureUI(.NotPlaying)
+    }
+    
+    func aspectFitButtons()
+    {
+        snailButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        chipmunkButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        parrotButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        darthVaderButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        rabbitButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        reverbButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        stopButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     @IBAction func playSoundForButton(sender: AnyObject!)

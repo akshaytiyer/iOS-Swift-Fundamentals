@@ -19,20 +19,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9j-PR-GBl">
-                                <rect key="frame" x="246" y="378" width="107" height="21"/>
+                                <rect key="frame" x="247" y="314" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J11-DA-qtI">
-                                <rect key="frame" x="275.5" y="427" width="50" height="50"/>
+                                <rect key="frame" x="276" y="363" width="50" height="50"/>
                                 <state key="normal" image="stopButton"/>
                                 <connections>
                                     <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U8r-9f-cXs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8g-wG-7b6">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <rect key="frame" x="251" y="186" width="100" height="100"/>
                                 <state key="normal" image="recordButton"/>
                                 <connections>
                                     <action selector="recordSound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OBf-ps-83Z"/>
@@ -42,11 +42,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="C9j-PR-GBl" firstAttribute="top" secondItem="O8g-wG-7b6" secondAttribute="bottom" constant="28" id="Tw1-Li-ahT"/>
-                            <constraint firstItem="O8g-wG-7b6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="edr-Ne-iAA"/>
-                            <constraint firstItem="J11-DA-qtI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fRS-Jt-t4c"/>
+                            <constraint firstItem="O8g-wG-7b6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="edr-Ne-iAA"/>
+                            <constraint firstItem="J11-DA-qtI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="fRS-Jt-t4c"/>
                             <constraint firstItem="C9j-PR-GBl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lll-aP-P6O"/>
                             <constraint firstItem="J11-DA-qtI" firstAttribute="top" secondItem="C9j-PR-GBl" secondAttribute="bottom" constant="28" id="mFq-uH-TJ4"/>
-                            <constraint firstItem="O8g-wG-7b6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vAd-0V-y25"/>
+                            <constraint firstItem="O8g-wG-7b6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-64" id="vAd-0V-y25"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Zog-ys-Goe"/>
