@@ -12,16 +12,16 @@ class ResultViewController: UIViewController
 {
     
     var resultText: String!
+    var imageName: String!
+    
     @IBOutlet var resultLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
     
     override func viewWillAppear(animated: Bool) {
-        if let resultText = self.resultText
-        {
             resultLabel.text = resultText
-        }
-        else
-        {
-            resultLabel.text = "Data Not Found"
-        }
+            imageView.image = UIImage(named: imageName)
+    }
+    @IBAction func dismiss(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
