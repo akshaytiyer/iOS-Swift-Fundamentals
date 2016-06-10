@@ -10,7 +10,18 @@ import UIKit
 
 class ResultViewController: UIViewController
 {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    var resultText: String!
+    @IBOutlet var resultLabel: UILabel!
+    
+    override func viewWillAppear(animated: Bool) {
+        if let resultText = self.resultText
+        {
+            resultLabel.text = resultText
+        }
+        else
+        {
+            resultLabel.text = "Data Not Found"
+        }
     }
 }
