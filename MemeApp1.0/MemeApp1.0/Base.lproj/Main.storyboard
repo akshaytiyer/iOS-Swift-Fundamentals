@@ -21,36 +21,47 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-Iq-TF0">
                                 <rect key="frame" x="-4" y="0.0" width="383" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="1dd-Fx-hCU"/>
+                                    <barButtonItem systemItem="action" id="1dd-Fx-hCU">
+                                        <connections>
+                                            <action selector="shareImage:" destination="BYZ-38-t0r" id="LkW-dn-mrt"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYx-bE-Ya8">
                                 <rect key="frame" x="-4" y="623" width="383" height="44"/>
                                 <items>
-                                    <barButtonItem title="Pick" id="1r9-RT-pMk"/>
+                                    <barButtonItem title="Pick" id="1r9-RT-pMk">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="AUc-Oi-7Xu"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="camera" id="xmr-Dr-UuB">
                                         <inset key="imageInsets" minX="1" minY="1" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="9YF-H6-QT5"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-MG-GkN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="42d-V0-46E">
+                                <rect key="frame" x="-4" y="44" width="383" height="579"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-MG-GkN">
                                 <rect key="frame" x="16" y="75" width="343" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="rBN-2f-sPK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r5V-ar-ZoY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="r5V-ar-ZoY">
                                 <rect key="frame" x="16" y="530" width="343" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="42d-V0-46E">
-                                <rect key="frame" x="-4" y="44" width="383" height="579"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EKo-MG-GkN" firstAttribute="centerX" secondItem="r5V-ar-ZoY" secondAttribute="centerX" id="5Mr-Qc-lVv"/>
                             <constraint firstItem="wKU-Iq-TF0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="6z0-ab-751"/>
@@ -77,6 +88,15 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="bottomTextField" destination="r5V-ar-ZoY" id="nes-XP-gdg"/>
+                        <outlet property="bottomToolbar" destination="GYx-bE-Ya8" id="Ia0-JX-4ki"/>
+                        <outlet property="cameraButton" destination="xmr-Dr-UuB" id="i8r-dT-tS5"/>
+                        <outlet property="imagePickerView" destination="42d-V0-46E" id="Fjo-fj-qwY"/>
+                        <outlet property="shareButton" destination="1dd-Fx-hCU" id="oWY-Lz-DiT"/>
+                        <outlet property="topTextField" destination="EKo-MG-GkN" id="9fp-KV-C6k"/>
+                        <outlet property="topToolbar" destination="wKU-Iq-TF0" id="6RS-Ld-awa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
