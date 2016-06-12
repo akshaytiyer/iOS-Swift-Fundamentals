@@ -31,22 +31,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYx-bE-Ya8">
-                                <rect key="frame" x="-4" y="623" width="383" height="44"/>
-                                <items>
-                                    <barButtonItem title="Pick" id="1r9-RT-pMk">
-                                        <connections>
-                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="AUc-Oi-7Xu"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem systemItem="camera" id="xmr-Dr-UuB">
-                                        <inset key="imageInsets" minX="1" minY="1" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="9YF-H6-QT5"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-MG-GkN">
                                 <rect key="frame" x="16" y="75" width="343" height="41"/>
                                 <constraints>
@@ -60,6 +44,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYx-bE-Ya8">
+                                <rect key="frame" x="-4" y="623" width="383" height="44"/>
+                                <items>
+                                    <barButtonItem image="pick" id="1r9-RT-pMk">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="AUc-Oi-7Xu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="32" style="plain" systemItem="fixedSpace" id="cUi-al-5Mu"/>
+                                    <barButtonItem systemItem="camera" id="xmr-Dr-UuB">
+                                        <inset key="imageInsets" minX="1" minY="1" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="9YF-H6-QT5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -99,4 +100,7 @@
             <point key="canvasLocation" x="244.5" y="314.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pick" width="30" height="30"/>
+    </resources>
 </document>
