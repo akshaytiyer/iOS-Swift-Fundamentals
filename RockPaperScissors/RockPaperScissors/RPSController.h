@@ -12,5 +12,7 @@
 @interface RPSController : NSObject
 
 @property (nonatomic) RPSGame *game;
-
+-(void) throwDown: (Move) playersMove;
+-(NSString*)messageForGame:(RPSGame*)game;
+-(NSString*) resultString: (RPSGame*) game;
 @end

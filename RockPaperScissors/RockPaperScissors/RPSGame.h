@@ -16,5 +16,7 @@
 
 -(instancetype) initFirstMove: (RPSTurn*) first
                   secondMove: (RPSTurn*) second;
+-(RPSTurn*) winner;
+-(RPSTurn*) loser;
 
 @end
