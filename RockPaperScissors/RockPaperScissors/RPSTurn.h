@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger, Move) {
     Rock,
     Paper,
-    Scissor
+    Scissor,
+    Invalid
 };
 
 @interface RPSTurn : NSObject
@@ -19,5 +20,7 @@ typedef NS_ENUM(NSInteger, Move) {
 @property (nonatomic) Move move;
 
 -(instancetype) initMove: (Move) move;
+-(BOOL) defeats: (RPSTurn*) turn;
+-(NSString*) description;
 
 @end

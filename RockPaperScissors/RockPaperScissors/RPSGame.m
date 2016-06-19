@@ -7,11 +7,12 @@
 //
 
 #import "RPSGame.h"
+#import "RPSTurn.h"
 
 @implementation RPSGame
 
 -(instancetype) initFirstMove: (RPSTurn*) first
-                secondMove: (RPSTurn*) second {
+                   secondMove: (RPSTurn*) second {
     self = [super init];
     
     if(self) {
@@ -20,6 +21,18 @@
     }
     
     return self;
+}
+
+-(RPSTurn*) winner {
+    return [self.firstTurn defeats:self.secondTurn] ? self.firstTurn : self.secondTurn;
+}
+
+-(RPSTurn*) loser {
+    return [self.firstTurn defeats:self.secondTurn] ? self.secondTurn : self.firstTurn;
+}
+
+-(NSString*) resultsString: (RPSGame*) game {
+    return [game.firstTurn defeats:game.secondTurn] ? @"You Win!" : @"You Lose!";
 }
 
 @end

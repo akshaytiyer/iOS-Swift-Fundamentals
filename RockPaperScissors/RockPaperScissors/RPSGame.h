@@ -14,7 +14,7 @@
 @property (nonatomic) RPSTurn *firstTurn;
 @property (nonatomic) RPSTurn *secondTurn;
 
--(instancetype) initWithMove: (RPSTurn*) first
+-(instancetype) initFirstMove: (RPSTurn*) first
                   secondMove: (RPSTurn*) second;
 
 @end
