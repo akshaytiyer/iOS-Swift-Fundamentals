@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5ED105D41D16195B00C9E96B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED105D31D16195B00C9E96B /* main.m */; };
+		5ED105DC1D161BDE00C9E96B /* RPSGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED105DB1D161BDE00C9E96B /* RPSGame.m */; };
+		5ED105DF1D161BE900C9E96B /* RPSTurn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED105DE1D161BE900C9E96B /* RPSTurn.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		5ED105D01D16195B00C9E96B /* RockPaperScissors */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RockPaperScissors; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED105D31D16195B00C9E96B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5ED105DA1D161BDE00C9E96B /* RPSGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSGame.h; sourceTree = "<group>"; };
+		5ED105DB1D161BDE00C9E96B /* RPSGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSGame.m; sourceTree = "<group>"; };
+		5ED105DD1D161BE900C9E96B /* RPSTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSTurn.h; sourceTree = "<group>"; };
+		5ED105DE1D161BE900C9E96B /* RPSTurn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSTurn.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				5ED105D31D16195B00C9E96B /* main.m */,
+				5ED105DA1D161BDE00C9E96B /* RPSGame.h */,
+				5ED105DB1D161BDE00C9E96B /* RPSGame.m */,
+				5ED105DD1D161BE900C9E96B /* RPSTurn.h */,
+				5ED105DE1D161BE900C9E96B /* RPSTurn.m */,
 			);
 			path = RockPaperScissors;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED105D41D16195B00C9E96B /* main.m in Sources */,
+				5ED105DC1D161BDE00C9E96B /* RPSGame.m in Sources */,
+				5ED105DF1D161BE900C9E96B /* RPSTurn.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

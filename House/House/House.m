@@ -15,7 +15,7 @@
 
 @implementation House
 
--(instancetype) initWithAddress: (NSString*) address  {
+-(instancetype) initWithAddress: (NSString*) address   {
     self = [super init];
     
     if (self) {
