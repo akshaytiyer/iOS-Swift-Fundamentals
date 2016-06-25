@@ -182,7 +182,7 @@ class ViewController: UIViewController {
     
     private func displayImageFromFlickrBySearch(var methodParameters: [String:AnyObject], withPageNumber: Int) {
         let session = NSURLSession.sharedSession()
-        methodParameters[Constants.FlickrResponseKeys.Page] = "\(withPageNumber)"
+        methodParameters[Constants.FlickrResponseKeys.Page] = "\(withPageNumber )"
         let request = NSURLRequest(URL: flickrURLFromParameters(methodParameters))
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
         
