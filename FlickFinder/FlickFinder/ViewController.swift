@@ -162,7 +162,7 @@ class ViewController: UIViewController {
                         }
                         let pageLimit = min(totalPages, 40)
                         let randomPage = Int(arc4random_uniform(UInt32(pageLimit))) + 1
-                        print(randomPage)
+                        self.displayImageFromFlickrBySearch(methodParameters, withPageNumber: randomPage)
        
                     }
                     catch {
@@ -177,6 +177,73 @@ class ViewController: UIViewController {
             }
         }
         task.resume()
+        
+    }
+    
+    private func displayImageFromFlickrBySearch(var methodParameters: [String:AnyObject], withPageNumber: Int) {
+        let session = NSURLSession.sharedSession()
+        methodParameters[Constants.FlickrResponseKeys.Page] = "\(withPageNumber)"
+        let request = NSURLRequest(URL: flickrURLFromParameters(methodParameters))
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        
+            func displayError(error: String){
+                print(error)
+                performUIUpdatesOnMain {
+                    self.setUIEnabled(true)
+                    self.photoTitleLabel.text = "No Photo Returned, Try Again"
+                    self.photoImageView.image = nil
+                }
+            }
+            
+            if error == nil
+            {
+                if let data = data {
+                    
+                    do
+                    {
+                        
+                        let jsondata = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                        print(jsondata)
+                        print(withPageNumber)
+                        guard let photosDictionary = jsondata[Constants.FlickrResponseKeys.Photos] as? [String: AnyObject],
+                         photoArray = photosDictionary[Constants.FlickrResponseKeys.Photo] as? [[String: AnyObject]]  else {
+                         print("JSON Data Not found")
+                         return
+                         }
+                         
+                         let randomPhotoIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
+                         let photoDictionary = photoArray[randomPhotoIndex] as [String: AnyObject]
+                         
+                         guard let imageURLString = photoDictionary[Constants.FlickrResponseKeys.MediumURL] as? String,
+                         imageText = photoDictionary[Constants.FlickrResponseKeys.Title] as? String else {
+                         print("JSON Data Not found")
+                         return
+                         }
+                         
+                         let imageURL = NSURL(string: imageURLString)
+                         if let imageData = NSData(contentsOfURL: imageURL!) {
+                         performUIUpdatesOnMain {
+                         self.setUIEnabled(true)
+                         self.photoImageView.image = UIImage(data: imageData)
+                         self.photoTitleLabel.text = imageText
+                         }
+                         }
+
+                    }
+                    catch {
+                        print("Could not parse the data as JSON: '\(data)'")
+                        return
+                    }
+                }
+            }
+            else
+            {
+                displayError(error.debugDescription)
+            }
+        }
+        task.resume()
+
+        
         
     }
     
