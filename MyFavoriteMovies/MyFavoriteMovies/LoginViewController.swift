@@ -99,24 +99,78 @@ class LoginViewController: UIViewController {
         /* 4. Make the request */
         let task = appDelegate.sharedSession.dataTaskWithRequest(request) { (data, response, error) in
             
-            /* 5. Parse the data */
-            /* 6. Use the data! */
+        /* 5. Parse the data */
+        var jsonData: AnyObject!
+        if let data = data {
+            do  {
+                    jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                }
+            catch {
+                    print("The JSON data could not be processed")
+                    return
+                }
+            }
+        /* 6. Use the data! */
+            guard let requestToken = jsonData[Constants.TMDBResponseKeys.RequestToken] as? String else {
+                print("Unable to load JSON Data")
+                self.debugTextLabel.text = error.debugDescription
+                return
+            }
+            
+            self.appDelegate.requestToken = requestToken
+            self.loginWithToken(requestToken)
         }
 
         /* 7. Start the request */
+        
         task.resume()
     }
     
     private func loginWithToken(requestToken: String) {
         
         /* TASK: Login, then get a session id */
-        
         /* 1. Set the parameters */
+        let methodParameters: [String: String!] = [
+            Constants.TMDBParameterKeys.ApiKey: Constants.TMDBParameterValues.ApiKey,
+            Constants.TMDBParameterKeys.RequestToken: requestToken,
+            Constants.TMDBParameterKeys.Username: self.usernameTextField.text,
+            Constants.TMDBParameterKeys.Password: self.passwordTextField.text
+        ]
+        
         /* 2/3. Build the URL, Configure the request */
+        let request = NSURLRequest(URL: appDelegate.tmdbURLFromParameters(methodParameters, withPathExtension: "/authentication/token/validate_with_login"))
         /* 4. Make the request */
-        /* 5. Parse the data */
-        /* 6. Use the data! */
+        let task = appDelegate.sharedSession.dataTaskWithRequest(request) { (data, response, error) in
+            /* 6. Parse the data! */
+            var jsonData: AnyObject!
+            if let data = data {
+                do  {
+                    jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                }
+                catch {
+                    print("The JSON data could not be processed")
+                    return
+                }
+            }
+
+            /* 6. Use the data! */
+            guard let successKey = jsonData[Constants.TMDBResponseKeys.Success] as? Int else {
+                print("Unable to load JSON Data")
+                self.debugTextLabel.text = error.debugDescription
+                return
+            }
+            
+            if successKey == 1
+            {
+                self.getSessionID(requestToken)
+            }
+            else
+            {
+                print(error.debugDescription)
+            }
+        }
         /* 7. Start the request */
+        task.resume()
     }
     
     private func getSessionID(requestToken: String) {
@@ -124,23 +178,76 @@ class LoginViewController: UIViewController {
         /* TASK: Get a session ID, then store it (appDelegate.sessionID) and get the user's id */
         
         /* 1. Set the parameters */
+        let methodParameters: [String: String!] = [
+            Constants.TMDBParameterKeys.ApiKey: Constants.TMDBParameterValues.ApiKey,
+            Constants.TMDBParameterKeys.RequestToken: requestToken
+        ]
         /* 2/3. Build the URL, Configure the request */
+        let request = NSURLRequest(URL: appDelegate.tmdbURLFromParameters(methodParameters, withPathExtension: "/authentication/session/new"))
         /* 4. Make the request */
+        let task = appDelegate.sharedSession.dataTaskWithRequest(request) { (data, response, error) in
         /* 5. Parse the data */
+        var jsonData: AnyObject!
+        if let data = data {
+                do  {
+                    jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                }
+                catch {
+                    print("The JSON data could not be processed")
+                    return
+                }
+            }
+
+            
         /* 6. Use the data! */
+            guard let sessionId = jsonData[Constants.TMDBResponseKeys.SessionID] as? String else {
+                print("Unable to load JSON Data")
+                self.debugTextLabel.text = error.debugDescription
+                return
+            }
+            self.appDelegate.sessionID = sessionId
+            self.getUserID(sessionId)
+        }
         /* 7. Start the request */
+        task.resume()
     }
     
     private func getUserID(sessionID: String) {
         
         /* TASK: Get the user's ID, then store it (appDelegate.userID) for future use and go to next view! */
-        
         /* 1. Set the parameters */
+        let methodParameters: [String: String!] = [
+            Constants.TMDBParameterKeys.ApiKey: Constants.TMDBParameterValues.ApiKey,
+            Constants.TMDBParameterKeys.SessionID: sessionID
+        ]
         /* 2/3. Build the URL, Configure the request */
+        let request = NSURLRequest(URL: appDelegate.tmdbURLFromParameters(methodParameters, withPathExtension: "/account"))
         /* 4. Make the request */
+        let task = appDelegate.sharedSession.dataTaskWithRequest(request) { (data, response, error) in
         /* 5. Parse the data */
+        var jsonData: AnyObject!
+        if let data = data {
+            do  {
+                    jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                }
+                catch {
+                    print("The JSON data could not be processed")
+                    return
+                }
+            }
+            
+            guard let userId = jsonData[Constants.TMDBResponseKeys.UserID] as? Int else {
+                print("Unable to load JSON Data")
+                self.debugTextLabel.text = error.debugDescription
+                return
+            }
+            self.appDelegate.userID = userId
+            self.completeLogin()    
         /* 6. Use the data! */
+
+        }
         /* 7. Start the request */
+        task.resume()
     }
 }
 
