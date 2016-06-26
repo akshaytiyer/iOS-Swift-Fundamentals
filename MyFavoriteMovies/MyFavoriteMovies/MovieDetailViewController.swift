@@ -172,22 +172,53 @@ class MovieDetailViewController: UIViewController {
     
     @IBAction func toggleFavorite(sender: AnyObject) {
         
-        // let shouldFavorite = !isFavorite
+        let shouldFavorite = !isFavorite
         
         /* TASK: Add movie as favorite, then update favorite buttons */
-        /* 1. Set the parameters */
-        /* 2/3. Build the URL, Configure the request */
-        /* 4. Make the request */
-        /* 5. Parse the data */
-        /* 6. Use the data! */
-        /* 7. Start the request */
-        
-        /* If the favorite/unfavorite request completes, then use this code to update the UI...
-        
-        performUIUpdatesOnMain {
-            self.favoriteButton.tintColor = (shouldFavorite) ? nil : UIColor.blackColor()
+        if let movie = movie {
+            /* 1. Set the parameters */
+            let methodParameters: [String: String!] = [
+                Constants.TMDBParameterKeys.ApiKey: Constants.TMDBParameterValues.ApiKey,
+                Constants.TMDBParameterKeys.SessionID: self.appDelegate.sessionID
+            ]
+            /* 2/3. Build the URL, Configure the request */
+            let request = NSMutableURLRequest(URL: appDelegate.tmdbURLFromParameters(methodParameters, withPathExtension: "/account/\(self.appDelegate.userID!)/favorite"))
+            request.HTTPMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPBody = "{\n  \"media_type\": \"movie\",\n  \"media_id\": \(movie.id),\n  \"favorite\": \(shouldFavorite) \n}".dataUsingEncoding(NSUTF8StringEncoding)
+            /* 4. Make the request */
+            /* 5. Parse the data */
+            let task = appDelegate.sharedSession.dataTaskWithRequest(request) { (data, response, error) in
+                var jsonData: AnyObject!
+                if let data = data {
+                    do
+                    {
+                    jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    }
+                    catch {
+                        print("Error")
+                    }
+                    guard let statusCode = jsonData[Constants.TMDBResponseKeys.StatusCode] as? Int else {
+                        print("Unable to load JSON Data")
+                        return
+                    }
+            /* 6. Use the data! */
+                    if statusCode==1 || statusCode==12
+                    {
+                        self.isFavorite = shouldFavorite
+                    }
+                    else
+                    {
+                        self.isFavorite = shouldFavorite
+                    }
+                    performUIUpdatesOnMain {
+                        self.favoriteButton.tintColor = (shouldFavorite) ? nil : UIColor.blackColor()
+                    }
+                }
+            }
+            /* 7. Start the request */
+            task.resume()
         }
-        
-        */
     }
 }
